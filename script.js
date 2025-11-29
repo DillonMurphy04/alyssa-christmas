@@ -4,8 +4,7 @@ const loveLetterElement = document.getElementById("loveLetter");
 // You can tweak this message if you want:
 const loveLetterText = `
 This is my little Christmas surprise for you.
-A place with some of our memories, some silly games,
-and a reminder of how much I love you. ❤️
+A place with some of our memories and a reminder of how much I love you. ❤️
 `.trim();
 
 let letterIndex = 0;
@@ -222,11 +221,12 @@ if (typeof L !== "undefined") {
         name: "San Luis Obispo, CA",
         coords: [35.2828, -120.6596],
         memories: [
+          "First met you",
           "First date at Haha Sushi – Sept 19, 2023",
-          "First sleepover – Sept 23, 2023",
           "First Halloween together",
+          "St. Fratty's",
           "Shabang (2024 & 2025)",
-          "Many, manny more memories"
+          "Many, many more memories"
         ],
         image: "images/first_shabang.jpeg"
       },
@@ -249,13 +249,20 @@ if (typeof L !== "undefined") {
         image: "images/lights.jpeg"
       },
       {
-        name: "Marin & Sea Ranch, CA",
+        name: "Marin, CA",
         coords: [38.0, -122.7],
         memories: [
           "Your first time in Marin & SF",
           "Marin County Fair & July 4th",
-          "Sea Ranch cabin trips & birthdays",
           "New Year's with my hometown friends"
+        ],
+        image: "images/marin_fair.jpeg"
+      },
+    {
+        name: "Sea Ranch, CA",
+        coords: [38.68093, -123.42967],
+        memories: [
+          "Sea Ranch cabin trips & birthdays",
         ],
         image: "images/sea_ranch.jpeg"
       },
@@ -283,7 +290,7 @@ if (typeof L !== "undefined") {
         coords: [34.4133, -119.859],
         memories: [
           "Moving you into UCSB",
-          "Deltopia, date party, St. Fratty's",
+          "Deltopia, date party",
           "Our 2-year anniversary",
           "Exploring SB together"
         ],
@@ -367,51 +374,3 @@ if (typeof L !== "undefined") {
     });
   }
 }
-
-// ===== Gift card flipping =====
-document.querySelectorAll(".gift-card").forEach((card) => {
-  card.addEventListener("click", () => {
-    card.classList.toggle("flipped");
-  });
-});
-
-// ===== Open When... messages =====
-const openWhenMessages = {
-  sad: `Hey love 💙
-
-If you're feeling sad right now, I wish I could give you a hug through the screen.
-I hope you remember how strong you are and how much I believe in you.
-I'm always on your team, no matter what.
-
-Take a deep breath, put on a song you love, and remember that I love you so much.`,
-  "cant-sleep": `Can't sleep again? 🌙
-
-If I were there, I'd probably be stealing your blanket and talking too much.
-Since I'm not, just know I'm thinking of you and wishing you the coziest night's rest.
-
-Close your eyes, think about one favorite memory we share, and fall asleep smiling.`,
-  "miss-me": `Missing me? I'm definitely missing you too 🤍
-
-Even when we're not in the same place, you're in my thoughts all the time.
-Look around you — there's probably something nearby that reminds you of us.
-
-I can't wait for our next hug, our next adventure, and our next quiet moment together.`
-};
-
-const openCards = document.querySelectorAll(".open-card");
-const openWhenBox = document.getElementById("openWhenMessage");
-const openWhenText = document.getElementById("openWhenText");
-const closeOpenWhen = document.getElementById("closeOpenWhen");
-
-openCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const id = card.getAttribute("data-message-id");
-    openWhenText.textContent = openWhenMessages[id] || "";
-    openWhenBox.classList.remove("hidden");
-    openWhenBox.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
-});
-
-closeOpenWhen.addEventListener("click", () => {
-  openWhenBox.classList.add("hidden");
-});
