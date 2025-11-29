@@ -62,22 +62,26 @@ document.querySelectorAll(".photo-thumb").forEach((img) => {
     if (!lightbox || !lightboxImage) return;
     lightboxImage.src = img.src;
     lightbox.classList.remove("hidden");
+    document.body.classList.add("no-scroll"); // prevent background scroll
   });
 });
 
 if (lightboxClose && lightbox) {
   lightboxClose.addEventListener("click", () => {
     lightbox.classList.add("hidden");
+    document.body.classList.remove("no-scroll");
   });
 
   lightbox.addEventListener("click", (e) => {
+    // click outside the image closes it
     if (e.target === lightbox) {
       lightbox.classList.add("hidden");
+      document.body.classList.remove("no-scroll");
     }
   });
 }
 
-// ===== 20 Things I Love About You (Flashcards) =====
+// ===== 20 Things I Love About You (Flip Card) =====
 
 // First 3 from what you wrote, rest are placeholders for you to fill in.
 const loveCards = [
@@ -163,7 +167,10 @@ const loveCards = [
   }
 ];
 
-const loveCardTitle = document.getElementById("loveCardTitle");
+const loveCard = document.getElementById("loveCard");
+const loveCardInner = loveCard ? loveCard.querySelector(".love-card-inner") : null;
+const loveCardTitleFront = document.getElementById("loveCardTitleFront");
+const loveCardTitleBack = document.getElementById("loveCardTitleBack");
 const loveCardText = document.getElementById("loveCardText");
 const loveCardCounter = document.getElementById("loveCardCounter");
 const prevLoveCardBtn = document.getElementById("prevLoveCard");
@@ -172,14 +179,20 @@ const nextLoveCardBtn = document.getElementById("nextLoveCard");
 let currentLoveIndex = 0;
 
 function renderLoveCard() {
-  if (!loveCardTitle || !loveCardText) return;
+  if (!loveCardTitleFront || !loveCardTitleBack || !loveCardText) return;
 
   const card = loveCards[currentLoveIndex];
-  loveCardTitle.textContent = card.title;
+  loveCardTitleFront.textContent = card.title;
+  loveCardTitleBack.textContent = card.title;
   loveCardText.textContent = card.text;
 
   if (loveCardCounter) {
     loveCardCounter.textContent = `${currentLoveIndex + 1} / ${loveCards.length}`;
+  }
+
+  // Reset flip state whenever we change cards
+  if (loveCard) {
+    loveCard.classList.remove("is-flipped");
   }
 
   if (prevLoveCardBtn) {
@@ -190,15 +203,25 @@ function renderLoveCard() {
   }
 }
 
+// Flip on click (front/back)
+if (loveCard && loveCardInner) {
+  loveCard.addEventListener("click", () => {
+    loveCard.classList.toggle("is-flipped");
+  });
+}
+
+// Prev / Next controls
 if (prevLoveCardBtn && nextLoveCardBtn) {
-  prevLoveCardBtn.addEventListener("click", () => {
+  prevLoveCardBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // don't flip the card on button click
     if (currentLoveIndex > 0) {
       currentLoveIndex--;
       renderLoveCard();
     }
   });
 
-  nextLoveCardBtn.addEventListener("click", () => {
+  nextLoveCardBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // don't flip the card on button click
     if (currentLoveIndex < loveCards.length - 1) {
       currentLoveIndex++;
       renderLoveCard();

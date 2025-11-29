@@ -739,7 +739,7 @@
             </div>
             <div class="timeline-media timeline-media-grid">
               <img src="images/sf_bday.jpeg" alt="Crawloween SF" class="timeline-photo photo-thumb" />
-              <img src="images/sf_bday_2.jpeg" alt="Crawloween SF 2" class="timeline-photo photo-thumb" />
+              <img src="images/sf_bday_1.jpeg" alt="Crawloween SF 2" class="timeline-photo photo-thumb" />
             </div>
           </div>
         </article>
@@ -794,14 +794,22 @@
     <section id="love-cards" class="section">
       <h2>20 Things I Love About You</h2>
       <p class="section-intro">
-        Just a few of the countless little (and big) things I love about you. Click through the cards. 💘
+        Just a few of the countless little (and big) things I love about you. Click on the card to flip it. 💘
       </p>
 
       <div class="love-cards-wrapper">
-        <!-- Reusing a "card" style similar to gifts -->
-        <div id="loveCard" class="gift-card love-card">
-          <h3 id="loveCardTitle"></h3>
-          <p id="loveCardText"></p>
+        <!-- Flashcard-style flip card -->
+        <div id="loveCard" class="love-card">
+          <div class="love-card-inner">
+            <div class="love-card-face love-card-front">
+              <h3 id="loveCardTitleFront"></h3>
+              <p class="love-card-hint">Click to flip 💌</p>
+            </div>
+            <div class="love-card-face love-card-back">
+              <h3 id="loveCardTitleBack"></h3>
+              <p id="loveCardText"></p>
+            </div>
+          </div>
         </div>
 
         <div class="love-card-controls">
@@ -832,7 +840,8 @@
     <section id="map-section" class="section">
       <h2>Our Places on the Map</h2>
       <p class="section-intro">
-        Some of the cities and places that have become special to us.
+        Some of the cities and places that have become “ours” — from SLO and Los Osos,
+        to Marin, Tahoe, Mexico, Europe, and more.
       </p>
       <div id="map"></div>
     </section>
