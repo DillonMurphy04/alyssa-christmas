@@ -5,6 +5,12 @@
   <title>For You ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet CSS for relationship map -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
 </head>
 <body>
   <header class="hero">
@@ -17,26 +23,23 @@
         <button class="primary-btn" id="startStoryButton">
           Start Our Story
         </button>
-        <button class="secondary-btn" id="toggleSong">
-          Play our song ♫
+        <button class="secondary-btn" id="goToPlaylist">
+          Go to our playlist ♫
         </button>
       </div>
       <p class="days-together">
         We've been together for <span id="daysTogether">...</span> days.
       </p>
-      <!-- Apple Music embed for "Our Song" (hidden by default, shown on button press) -->
-      <div id="ourSongEmbed" class="our-song-embed hidden">
-        <h3 style="color:#c2185b;margin-bottom:0.5rem;font-size:1.2rem;">Our Song</h3>
-        <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="400" style="width:100%;max-width:500px;overflow:hidden;border-radius:16px;box-shadow:0 4px 16px rgba(194,24,91,0.08);border:2px solid #f3c0de;background:#fff;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/big-a/pl.u-zPyLmZ3TZLkbAg6"></iframe>
-      </div>
     </div>
   </header>
 
   <nav class="navbar">
     <a href="#timeline">Our Timeline</a>
-    <a href="#photos">Favorite Photos</a>
     <a href="#quiz">Us Trivia</a>
     <a href="#who">Who’s More Likely</a>
+    <a href="#map-section">Our Places</a>
+    <a href="#gifts">Virtual Gifts</a>
+    <a href="#playlist">Playlist</a>
     <a href="#open-when">Open When...</a>
   </nav>
 
@@ -44,60 +47,784 @@
     <!-- Timeline Section -->
     <section id="timeline" class="section">
       <h2>Our Timeline</h2>
-      <div class="timeline">
-        <!-- Replace these with your real memories -->
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>We Started Dating – <span>October 7, 2023</span></h3>
-            <p>
-              Write a few sentences about that day: how it happened, what you were feeling,
-              and why it’s so special to you.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>First Date – <span>[Date]</span></h3>
-            <p>
-              Describe your first date, any funny moment, something she said, or something
-              you still think about.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h3>A Favorite Memory – <span>[Date]</span></h3>
-            <p>
-              Talk about a trip, adventure, or even a chill night in that meant a lot to you.
-            </p>
-          </div>
-        </div>
-
-        <!-- Add more timeline-item blocks as needed -->
-      </div>
-    </section>
-
-    <!-- Photo Gallery Section -->
-    <section id="photos" class="section">
-      <h2>Some of My Favorite Photos of Us</h2>
       <p class="section-intro">
-        These are just a few moments I love looking back on. Click to see them bigger 💕
+        A little walk through our story so far — with some of my favorite photos and memories.
       </p>
-      <div class="photo-grid">
-        <!-- Replace src paths with your own images in the images/ folder -->
-        <img src="images/photo1.jpg" alt="Memory 1" class="photo-thumb" />
-        <img src="images/photo2.jpg" alt="Memory 2" class="photo-thumb" />
-        <img src="images/photo3.jpg" alt="Memory 3" class="photo-thumb" />
-        <img src="images/photo4.jpg" alt="Memory 4" class="photo-thumb" />
+
+      <div class="timeline">
+
+            <!-- j_bday.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Jasmeet’s birthday – when we “technically” met</h3>
+          <p class="timeline-meta">Oct 22 · San Luis Obispo</p>
+          <p>
+            A picture from our friend Jasmeet’s birthday party (<code>j_bday.jpeg</code>).
+            When we “technically” met, although briefly, and didn’t actually hang out until a year later.
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/j_bday.jpeg" alt="Jasmeet's birthday party" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- First date (no file) -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First date</h3>
+          <p class="timeline-meta">September 19, 2023 · Haha Sushi · San Luis Obispo</p>
+          <p>
+            First date! At Haha Sushi in San Luis Obispo.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- first_sleep.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First sleepover</h3>
+          <p class="timeline-meta">September 23, 2023 · San Luis Obispo</p>
+          <p>
+            A picture of her first time sleeping over
+            (<code>first_sleep.jpeg</code>) — just a few days after our first date.
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/first_sleep.jpeg" alt="First sleepover" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- first_friends.mp4 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First time meeting your Chorro friends</h3>
+          <p class="timeline-meta">October 24, 2023 · San Luis Obispo</p>
+          <p>
+            First time meeting your friends from Chorro
+            (<code>first_friends.mp4</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <video src="images/first_friends.mp4" class="timeline-video" controls></video>
+        </div>
+      </div>
+    </article>
+
+    <!-- Officially asked her to be my gf -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Officially asked you to be my girlfriend</h3>
+          <p class="timeline-meta">October 7, 2023 · Cooper · San Luis Obispo</p>
+          <p>
+            Officially asked her to be my girlfriend in my bed at Cooper in San Luis Obispo.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <!-- first_fam.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First time meeting your family</h3>
+          <p class="timeline-meta">October 2023 · Los Osos, CA</p>
+          <p>
+            First time meeting her family and carving pumpkins together
+            (<code>first_fam.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/first_fam.jpeg" alt="Carving pumpkins in Los Osos" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- halloween.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First Halloween together</h3>
+          <p class="timeline-meta">October 2023 · San Luis Obispo</p>
+          <p>
+            First Halloween together and first time hard launching on Instagram
+            (<code>halloween.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/halloween.jpeg" alt="First Halloween together" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- first_marin.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First time you came to Marin & SF</h3>
+          <p class="timeline-meta">November 2023 · Marin / SF, CA</p>
+          <p>
+            First time she came to Marin and visited my hometown friends and my family,
+            and first time I took her to SF
+            (<code>first_marin.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/first_marin.jpeg" alt="First time in Marin and SF" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- fight.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First fight</h3>
+          <p class="timeline-meta">November 2023 · San Luis Obispo, CA</p>
+          <p>
+            First fight and first amazing post-fight date
+            (<code>fight.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/fight.jpeg" alt="First fight and post-fight date" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- gingerbread.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Gingerbread houses while sick</h3>
+          <p class="timeline-meta">December 2023 · San Luis Obispo, CA</p>
+          <p>
+            Made gingerbread houses while sick, one of our favorite dates
+            (<code>gingerbread.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/gingerbread.jpeg" alt="Gingerbread houses while sick" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- lights.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Cambria Christmas lights</h3>
+          <p class="timeline-meta">December 2023 · Cambria, CA</p>
+          <p>
+            She took me to the Cambria Christmas lights. One of my favorite dates
+            (<code>lights.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/lights.jpeg" alt="Cambria Christmas lights" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- light_sf -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>SF light installation</h3>
+          <p class="timeline-meta">December 2023 · San Francisco, CA</p>
+          <p>
+            A favorite date again — went to see the light installation in SF
+            (<code>light_sf.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/light_sf.jpeg" alt="SF light installation" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- ny_2024.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>New Year’s 2024</h3>
+          <p class="timeline-meta">December 2023 · Marin, CA</p>
+          <p>
+            New Year’s 2024 with my hometown friends
+            (<code>ny_2024.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/ny_2024.jpeg" alt="New Year's 2024 in Marin" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- mexico_1–3 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First trip together – Sayulita</h3>
+          <p class="timeline-meta">March 2024 · Sayulita, Mexico</p>
+          <p>
+            First trip together! Went to Sayulita in Mexico together
+            (<code>mexico_1</code>, <code>mexico_2</code>, <code>mexico_3</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/mexico_1.jpeg" alt="Sayulita 1" class="timeline-photo photo-thumb" />
+          <img src="images/mexico_2.jpeg" alt="Sayulita 2" class="timeline-photo photo-thumb" />
+          <img src="images/mexico_3.jpeg" alt="Sayulita 3" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- first_shabang.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First Shabang together</h3>
+          <p class="timeline-meta">May 2024 · San Luis Obispo</p>
+          <p>
+            First time going to Shabang together! (music festival)
+            (<code>first_shabang.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/first_shabang.jpeg" alt="First Shabang together" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- goodbye.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First big goodbye</h3>
+          <p class="timeline-meta">June 2024 · Paso Robles, CA</p>
+          <p>
+            First big goodbye before I went home for the summer and she headed to Santa Barbara
+            for school (<code>goodbye.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/goodbye.jpeg" alt="First big goodbye" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- marin_fair -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Marin County Fair – July 4th</h3>
+          <p class="timeline-meta">July 2024 · Marin, CA</p>
+          <p>
+            July 4th together in Marin, went to Marin County Fair!
+            (<code>marin_fair.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/marin_fair.jpeg" alt="Marin County Fair" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- paso_fair.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Paso Fair</h3>
+          <p class="timeline-meta">July 2024 · Paso Robles, CA</p>
+          <p>
+            First time down for Alyssa's fair down in Paso Robles (right by SLO),
+            with John, Molly, and Gabe (<code>paso_fair.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/paso_fair.jpeg" alt="Paso Robles Fair" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- dillon_21 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>My 21st birthday</h3>
+          <p class="timeline-meta">August 2024 · Marin, CA</p>
+          <p>
+            My 21st birthday with her!
+            (<code>dillon_21.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/dillon_21.jpeg" alt="Dillon 21st birthday" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- sea_ranch.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First time at Sea Ranch cabin</h3>
+          <p class="timeline-meta">August 2024 · Sea Ranch, CA</p>
+          <p>
+            First time taking her to the cabin in Sea Ranch!
+            (<code>sea_ranch.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/sea_ranch.jpeg" alt="Sea Ranch cabin" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- spain_1–3, england_1–5, flight_back.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Big Europe trip – Spain & England</h3>
+          <p class="timeline-meta">Aug–Sept 2024 · Barcelona, London & England</p>
+          <p>
+            Big trip together! Visited Barcelona, visited London, and visited Alyssa’s family who all
+            live in England
+            (<code>spain_1–3</code>, <code>england_1–5</code>, <code>flight_back.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/spain_1.jpeg" alt="Barcelona 1" class="timeline-photo photo-thumb" />
+          <img src="images/spain_2.jpeg" alt="Barcelona 2" class="timeline-photo photo-thumb" />
+          <img src="images/spain_3.jpeg" alt="Barcelona 3" class="timeline-photo photo-thumb" />
+          <img src="images/england_1.jpeg" alt="England 1" class="timeline-photo photo-thumb" />
+          <img src="images/england_2.jpeg" alt="England 2" class="timeline-photo photo-thumb" />
+          <img src="images/england_3.jpeg" alt="England 3" class="timeline-photo photo-thumb" />
+          <img src="images/england_4.jpeg" alt="England 4" class="timeline-photo photo-thumb" />
+          <img src="images/england_5.jpeg" alt="England 5" class="timeline-photo photo-thumb" />
+          <img src="images/flight_back.jpeg" alt="Flight back" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- santa_barbara.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Moved Alyssa into UCSB</h3>
+          <p class="timeline-meta">2024 · Santa Barbara, CA</p>
+          <p>
+            Moved Alyssa into her Santa Barbara apartment to start UCSB, very sad
+            (with her mom and Isla, little sister)
+            (<code>santa_barbara.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/santa_barbara.jpeg" alt="Move-in day at UCSB" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- first_year.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First year anniversary</h3>
+          <p class="timeline-meta">October 2024</p>
+          <p>
+            First year anniversary! Surprised her with Kaytranada tickets
+            (<code>first_year.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/first_year.jpeg" alt="First year anniversary" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- LA.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>LA for her 20th birthday</h3>
+          <p class="timeline-meta">October 2024 · Los Angeles, CA</p>
+          <p>
+            Went to LA for her 20th birthday!
+            (<code>LA.jpeg</code>), due to Kaytranada unfortunately postponing a week.
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/LA.jpeg" alt="LA 20th birthday" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- kaytranada.mov -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Kaytranada in LA</h3>
+          <p class="timeline-meta">November 2024 · Los Angeles, CA</p>
+          <p>
+            Kaytranada a week later back in LA!
+            (<code>kaytranada.mov</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <video src="images/kaytranada.mov" class="timeline-video" controls></video>
+        </div>
+      </div>
+    </article>
+
+    <!-- sf_1, sf_2 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Big SF dates for Thanksgiving</h3>
+          <p class="timeline-meta">November 2024 · San Francisco, CA</p>
+          <p>
+            Big SF dates for Thanksgiving week! Some favorite dates again
+            (<code>sf_1</code>, <code>sf_2</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/sf_1.jpeg" alt="SF date 1" class="timeline-photo photo-thumb" />
+          <img src="images/sf_2.jpeg" alt="SF date 2" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- tahoe_fams -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Tahoe with both families</h3>
+          <p class="timeline-meta">December 2024 · Tahoe, CA</p>
+          <p>
+            Both families all came to Tahoe!
+            (<code>tahoe_fams.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/tahoe_fams.jpeg" alt="Tahoe with both families" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- vday + surprise -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Valentine’s Day & surprise room</h3>
+          <p class="timeline-meta">February 2025 · San Luis Obispo / Cambria, CA</p>
+          <p>
+            Valentine’s Day! Took her to Robin's in Cambria and she surprised me with my entire room
+            decorated (<code>vday.jpeg</code>, <code>surprise.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/vday.jpeg" alt="Valentine's dinner in Cambria" class="timeline-photo photo-thumb" />
+          <img src="images/surprise.jpeg" alt="Room decorated surprise" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- date_party.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Date party together</h3>
+          <p class="timeline-meta">February 2025 · Santa Barbara, CA</p>
+          <p>
+            Date party together for volleyball in Santa Barbara!
+            (<code>date_party.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/date_party.jpeg" alt="Date party in Santa Barbara" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- st_frattys -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>St. Patrick’s / St. Fratty’s Day</h3>
+          <p class="timeline-meta">March 2025</p>
+          <p>
+            Out for St. Patrick’s / St. Fratty’s Day together!
+            (<code>st_frattys.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/st_frattys.jpeg" alt="St Fratty's" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- monterey + taco_bell -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Monterey / Santa Cruz & Taco Bell Cantina</h3>
+          <p class="timeline-meta">March 2025 · Monterey / Santa Cruz / Pacifica, CA</p>
+          <p>
+            Went on our Monterey/Santa Cruz trip together and went to our first Taco Bell Cantina
+            on the beach in Pacifica
+            (<code>monterey.jpeg</code>, <code>taco_bell.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/monterey.jpeg" alt="Monterey trip" class="timeline-photo photo-thumb" />
+          <img src="images/taco_bell.jpeg" alt="Taco Bell Cantina on the beach" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- deltopia.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>First Deltopia together</h3>
+          <p class="timeline-meta">April 2025 · Santa Barbara, CA</p>
+          <p>
+            First Deltopia together!
+            (<code>deltopia.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/deltopia.jpeg" alt="Deltopia together" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- shabang_2 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Second Shabang together</h3>
+          <p class="timeline-meta">May 2025 · San Luis Obispo, CA</p>
+          <p>
+            Second Shabang together!
+            (<code>shabang_2.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/shabang_2.jpeg" alt="Second Shabang" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- graduation.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Undergraduate graduation</h3>
+          <p class="timeline-meta">June 2025 · San Luis Obispo, CA</p>
+          <p>
+            My undergraduate graduation, with both our families there!
+            (<code>graduation.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/graduation.jpeg" alt="Graduation" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- tahoe_2.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Back in Tahoe</h3>
+          <p class="timeline-meta">July 2025 · Tahoe, CA</p>
+          <p>
+            Back in Lake Tahoe with the family!
+            (<code>tahoe_2.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/tahoe_2.jpeg" alt="Tahoe July 2025" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- sea_ranch_2 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Sea Ranch for my 22nd birthday</h3>
+          <p class="timeline-meta">August 2025 · Sea Ranch, CA</p>
+          <p>
+            Back in Sea Ranch for my 22nd birthday!
+            (<code>sea_ranch_2.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/sea_ranch_2.jpeg" alt="Sea Ranch 22nd birthday" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- tahoe_3 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Tahoe for Labor Day</h3>
+          <p class="timeline-meta">September 2025 · Tahoe, CA</p>
+          <p>
+            Back in Tahoe for Labor Day with both families together!
+            (<code>tahoe_3.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/tahoe_3.jpeg" alt="Tahoe Labor Day 2025" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- 2_year.jpeg -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>2 year anniversary</h3>
+          <p class="timeline-meta">October 2025 · Santa Barbara, CA</p>
+          <p>
+            2 year anniversary together!
+            (<code>2_year.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/2_year.jpeg" alt="Two year anniversary" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- 21_bday_1, 21_bday_2 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Alyssa’s 21st birthday</h3>
+          <p class="timeline-meta">October 2025 · Santa Barbara, CA</p>
+          <p>
+            Alyssa’s 21st birthday!
+            (<code>21_bday_1</code>, <code>21_bday_2</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/21_bday_1.jpeg" alt="Alyssa 21st birthday 1" class="timeline-photo photo-thumb" />
+          <img src="images/21_bday_2.jpeg" alt="Alyssa 21st birthday 2" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- sf_bday, sf_bday_1 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Crawloween in SF</h3>
+          <p class="timeline-meta">October 2025 · San Francisco, CA</p>
+          <p>
+            We went out for Crawloween for her 21st birthday!
+            (<code>sf_bday</code>, <code>sf_bday_1</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/sf_bday.jpeg" alt="Crawloween SF" class="timeline-photo photo-thumb" />
+          <img src="images/sf_bday_1.jpeg" alt="Crawloween SF 2" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- tame_impala -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>Tame Impala concert</h3>
+          <p class="timeline-meta">November 2025 · Los Angeles, CA</p>
+          <p>
+            Went to see Tame Impala in concert!
+            (<code>tame_impala.jpeg</code>).
+          </p>
+        </div>
+        <div class="timeline-media">
+          <img src="images/tame_impala.jpeg" alt="Tame Impala concert" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
+    <!-- san_diego, san_diego_1 -->
+    <article class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-text">
+          <h3>San Diego birthday trip</h3>
+          <p class="timeline-meta">2025 · San Diego, CA</p>
+          <p>
+            Went to San Diego which she got as my birthday present!
+            (<code>san_diego</code>, <code>san_diego_1</code>).
+          </p>
+        </div>
+        <div class="timeline-media timeline-media-grid">
+          <img src="images/san_diego.jpeg" alt="San Diego trip 1" class="timeline-photo photo-thumb" />
+          <img src="images/san_diego_1.jpeg" alt="San Diego trip 2" class="timeline-photo photo-thumb" />
+        </div>
+      </div>
+    </article>
+
       </div>
     </section>
 
-    <!-- Lightbox Modal for Photos -->
+    <!-- Lightbox Modal for Timeline photos -->
     <div id="lightbox" class="lightbox hidden">
       <div class="lightbox-content">
         <button id="lightboxClose" class="lightbox-close">&times;</button>
@@ -152,8 +879,139 @@
           </div>
           <p class="who-result"></p>
         </div>
+      </div>
+    </section>
 
-        <!-- Add more who-card blocks as you like -->
+    <!-- Relationship Map Section -->
+    <section id="map-section" class="section">
+      <h2>Our Places on the Map</h2>
+      <p class="section-intro">
+        Some of the cities and places that have become “ours” — from SLO and Los Osos,
+        to Marin, Tahoe, Mexico, Europe, and more.
+      </p>
+      <div id="map"></div>
+    </section>
+
+    <!-- Virtual Gifts Section -->
+    <section id="gifts" class="section">
+      <h2>Virtual Gifts & Love Coupons</h2>
+      <p class="section-intro">
+        A few little promises and gifts from me to you. Click a card to flip it and see what you get 💌
+      </p>
+      <div class="gift-grid">
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>Cozy Movie Night</h3>
+              <p>Redeem for one full cozy movie night.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>Cozy Movie Night</h3>
+              <p>
+                I pick up snacks, we wear comfy clothes, we watch whatever you want,
+                and I put my phone far away. No distractions, just us.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>Massage Coupon</h3>
+              <p>Redeem for one back/shoulder massage.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>Massage Coupon</h3>
+              <p>
+                Good for one uninterrupted massage night: candles optional, music optional,
+                but you relaxing is required.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>Date of Your Choice</h3>
+              <p>You plan it, I say yes.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>Date of Your Choice</h3>
+              <p>
+                Whatever you want to do—fancy dinner, beach day, staying in, random adventure—
+                I’m in. No complaints, no debates.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>“I Listen Only” Talk</h3>
+              <p>Redeem for one vent session.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>“I Listen Only” Talk</h3>
+              <p>
+                A full conversation where I just listen, validate, and don’t try to fix anything
+                unless you ask. Just support and love.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>Future Trip Planning Night</h3>
+              <p>Redeem for one travel dreaming session.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>Future Trip Planning Night</h3>
+              <p>
+                We sit down and plan a future trip—looking at places, Airbnbs, activities,
+                and getting excited together.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-card-inner">
+            <div class="gift-card-front">
+              <h3>One Lazy Day</h3>
+              <p>We do absolutely nothing productive.</p>
+            </div>
+            <div class="gift-card-back">
+              <h3>One Lazy Day</h3>
+              <p>
+                No guilt, no agenda. Just sleeping in, snacks, cuddles, maybe a walk,
+                and a whole lot of doing nothing together.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Playlist Section -->
+    <section id="playlist" class="section">
+      <h2>Our Playlist</h2>
+      <p class="section-intro">
+        The soundtrack to us – songs that make me think of you, us, and everything we've done together.
+      </p>
+      <div class="music-embed">
+        <!-- Your Apple Music playlist embed -->
+        <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="450"
+                style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/playlist/big-a/pl.u-zPyLmZ3TZLkbAg6">
+        </iframe>
       </div>
     </section>
 
@@ -183,10 +1041,12 @@
 
   <footer class="footer">
     <p>
-      Made with ❤️ by [Your Name] for [Her Name] – Christmas 2025
+      Made with ❤️ by Dillon for Alyssa – Christmas 2025
     </p>
   </footer>
 
+  <!-- Leaflet JS for map -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

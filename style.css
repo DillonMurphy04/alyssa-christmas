@@ -142,13 +142,13 @@ body {
 /* Timeline */
 
 .timeline {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border-left: 3px solid #f3c0de;
   padding-left: 1.25rem;
 }
 
 .timeline-item {
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
   position: relative;
 }
 
@@ -160,31 +160,45 @@ body {
   border: 3px solid #fff;
   position: absolute;
   left: -1.95rem;
-  top: 0.45rem;
+  top: 0.8rem;
   box-shadow: 0 0 0 3px #f3c0de;
 }
 
-.timeline-content h3 {
-  font-size: 1.05rem;
+.timeline-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem 1.3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.timeline-text h3 {
+  font-size: 1.1rem;
   margin-bottom: 0.3rem;
   color: #7b1f46;
 }
 
-.timeline-content span {
-  font-weight: 400;
-  font-size: 0.95rem;
+.timeline-meta {
+  font-size: 0.85rem;
   color: #777;
+  margin-bottom: 0.45rem;
 }
 
-/* Photo Grid */
+.timeline-media {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-.photo-grid {
+.timeline-media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 0.5rem;
 }
 
-.photo-thumb {
+.timeline-photo {
   width: 100%;
   border-radius: 12px;
   object-fit: cover;
@@ -194,9 +208,20 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.photo-thumb:hover {
+.timeline-media-caption {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.timeline-photo:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.timeline-video {
+  width: 100%;
+  border-radius: 12px;
+  max-height: 260px;
 }
 
 /* Lightbox */
@@ -342,6 +367,83 @@ body {
   min-height: 1.2rem;
 }
 
+/* Relationship Map */
+
+#map {
+  margin-top: 1.5rem;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Gift Cards */
+
+.gift-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.gift-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.gift-card-inner {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.gift-card.flipped .gift-card-inner {
+  transform: rotateY(180deg);
+}
+
+.gift-card-front,
+.gift-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  backface-visibility: hidden;
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gift-card-front {
+  background: #fff;
+}
+
+.gift-card-back {
+  background: #ffe4f2;
+  transform: rotateY(180deg);
+}
+
+.gift-card-front h3,
+.gift-card-back h3 {
+  margin-bottom: 0.4rem;
+  color: #7b1f46;
+}
+
+.gift-card-front p,
+.gift-card-back p {
+  font-size: 0.9rem;
+}
+
+/* Playlist */
+
+.music-embed {
+  display: flex;
+  justify-content: center;
+}
+
 /* Open When */
 
 .open-when-grid {
@@ -404,30 +506,25 @@ body {
   color: #777;
 }
 
-/* Our Song Embed */
+/* Small screens */
 
-.our-song-embed {
-  margin: 1.5rem auto 0 auto;
-  padding: 1.25rem 1.5rem;
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(194,24,91,0.08);
-  border: 2px solid #f3c0de;
-  max-width: 540px;
-  text-align: center;
+@media (min-width: 720px) {
+  .timeline-card {
+    flex-direction: row;
+  }
+
+  .timeline-text {
+    flex: 1.2;
+  }
+
+  .timeline-media,
+  .timeline-media-grid {
+    flex: 1;
+  }
 }
 
-.our-song-embed h3 {
-  color: #c2185b;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.our-song-embed iframe {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 16px;
-  border: none;
-  box-shadow: 0 4px 16px rgba(194,24,91,0.08);
-  background: #fff;
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 1.5rem;
+  }
 }
