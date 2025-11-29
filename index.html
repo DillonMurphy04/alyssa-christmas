@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>For You, Alyssa ❤️</h1>
+      <p class="subtitle" id="loveLetter">
+        <!-- This gets a typing effect from script.js -->
+      </p>
+      <div class="hero-controls">
+        <button class="primary-btn" id="startStoryButton">
+          Start Our Story
+        </button>
+        <button class="secondary-btn" id="toggleSong">
+          Play our song ♫
+        </button>
+      </div>
+      <p class="days-together">
+        We've been together for <span id="daysTogether">...</span> days.
+      </p>
+      <!-- Apple Music embed for "Our Song" (hidden by default, shown on button press) -->
+      <div id="ourSongEmbed" class="our-song-embed hidden">
+        <h3 style="color:#c2185b;margin-bottom:0.5rem;font-size:1.2rem;">Our Song</h3>
+        <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="400" style="width:100%;max-width:500px;overflow:hidden;border-radius:16px;box-shadow:0 4px 16px rgba(194,24,91,0.08);border:2px solid #f3c0de;background:#fff;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/big-a/pl.u-zPyLmZ3TZLkbAg6"></iframe>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <a href="#timeline">Our Timeline</a>
+    <a href="#photos">Favorite Photos</a>
+    <a href="#quiz">Us Trivia</a>
+    <a href="#who">Who’s More Likely</a>
+    <a href="#open-when">Open When...</a>
+  </nav>
+
+  <main>
+    <!-- Timeline Section -->
+    <section id="timeline" class="section">
+      <h2>Our Timeline</h2>
+      <div class="timeline">
+        <!-- Replace these with your real memories -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>We Started Dating – <span>October 7, 2023</span></h3>
+            <p>
+              Write a few sentences about that day: how it happened, what you were feeling,
+              and why it’s so special to you.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>First Date – <span>[Date]</span></h3>
+            <p>
+              Describe your first date, any funny moment, something she said, or something
+              you still think about.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>A Favorite Memory – <span>[Date]</span></h3>
+            <p>
+              Talk about a trip, adventure, or even a chill night in that meant a lot to you.
+            </p>
+          </div>
+        </div>
+
+        <!-- Add more timeline-item blocks as needed -->
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="photos" class="section">
+      <h2>Some of My Favorite Photos of Us</h2>
+      <p class="section-intro">
+        These are just a few moments I love looking back on. Click to see them bigger 💕
+      </p>
+      <div class="photo-grid">
+        <!-- Replace src paths with your own images in the images/ folder -->
+        <img src="images/photo1.jpg" alt="Memory 1" class="photo-thumb" />
+        <img src="images/photo2.jpg" alt="Memory 2" class="photo-thumb" />
+        <img src="images/photo3.jpg" alt="Memory 3" class="photo-thumb" />
+        <img src="images/photo4.jpg" alt="Memory 4" class="photo-thumb" />
+      </div>
+    </section>
+
+    <!-- Lightbox Modal for Photos -->
+    <div id="lightbox" class="lightbox hidden">
+      <div class="lightbox-content">
+        <button id="lightboxClose" class="lightbox-close">&times;</button>
+        <img id="lightboxImage" src="" alt="Large view" />
+      </div>
+    </div>
+
+    <!-- Trivia Quiz Section -->
+    <section id="quiz" class="section">
+      <h2>How Well Do You Know Us?</h2>
+      <p class="section-intro">
+        A little trivia game about our relationship. No pressure, but I’m totally
+        keeping score 😉
+      </p>
+      <div id="quizContainer" class="quiz-container">
+        <!-- Filled in by script.js -->
+      </div>
+      <button id="submitQuiz" class="primary-btn quiz-btn">Submit Answers</button>
+      <p id="quizResult" class="quiz-result"></p>
+    </section>
+
+    <!-- Who's More Likely Section -->
+    <section id="who" class="section">
+      <h2>Who’s More Likely To...?</h2>
+      <p class="section-intro">
+        Tap an answer and see what I think. (Spoiler: you're perfect either way 😌)
+      </p>
+      <div class="who-grid">
+        <div class="who-card" data-question-id="sleep-in">
+          <h3>...sleep in the latest?</h3>
+          <div class="who-buttons">
+            <button class="who-btn" data-answer="me">Me</button>
+            <button class="who-btn" data-answer="you">You</button>
+          </div>
+          <p class="who-result"></p>
+        </div>
+
+        <div class="who-card" data-question-id="steal-fries">
+          <h3>...steal fries off the other's plate?</h3>
+          <div class="who-buttons">
+            <button class="who-btn" data-answer="me">Me</button>
+            <button class="who-btn" data-answer="you">You</button>
+          </div>
+          <p class="who-result"></p>
+        </div>
+
+        <div class="who-card" data-question-id="plan-dates">
+          <h3>...plan a surprise date?</h3>
+          <div class="who-buttons">
+            <button class="who-btn" data-answer="me">Me</button>
+            <button class="who-btn" data-answer="you">You</button>
+          </div>
+          <p class="who-result"></p>
+        </div>
+
+        <!-- Add more who-card blocks as you like -->
+      </div>
+    </section>
+
+    <!-- Open When Section -->
+    <section id="open-when" class="section">
+      <h2>Open When...</h2>
+      <div class="open-when-grid">
+        <div class="open-card" data-message-id="sad">
+          <h3>...you're feeling sad 💙</h3>
+          <p>Click to open</p>
+        </div>
+        <div class="open-card" data-message-id="cant-sleep">
+          <h3>...you can't sleep 🌙</h3>
+          <p>Click to open</p>
+        </div>
+        <div class="open-card" data-message-id="miss-me">
+          <h3>...you miss me 🤍</h3>
+          <p>Click to open</p>
+        </div>
+      </div>
+      <div id="openWhenMessage" class="open-when-message hidden">
+        <button id="closeOpenWhen" class="lightbox-close small">&times;</button>
+        <p id="openWhenText"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Made with ❤️ by [Your Name] for [Her Name] – Christmas 2025
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
