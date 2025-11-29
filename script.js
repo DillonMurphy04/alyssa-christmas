@@ -19,10 +19,15 @@ function typeLoveLetter() {
 typeLoveLetter();
 
 // ===== Smooth scroll from "Start Our Story" button =====
-document.getElementById("startStoryButton").addEventListener("click", () => {
-  const timelineSection = document.getElementById("timeline");
-  timelineSection.scrollIntoView({ behavior: "smooth" });
-});
+const startStoryButton = document.getElementById("startStoryButton");
+if (startStoryButton) {
+  startStoryButton.addEventListener("click", () => {
+    const timelineSection = document.getElementById("timeline");
+    if (timelineSection) {
+      timelineSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
 
 // ===== Scroll to playlist from hero button =====
 const goToPlaylistBtn = document.getElementById("goToPlaylist");
@@ -54,155 +59,224 @@ const lightboxClose = document.getElementById("lightboxClose");
 // All images with class "photo-thumb" will open in the lightbox
 document.querySelectorAll(".photo-thumb").forEach((img) => {
   img.addEventListener("click", () => {
+    if (!lightbox || !lightboxImage) return;
     lightboxImage.src = img.src;
     lightbox.classList.remove("hidden");
   });
 });
 
-lightboxClose.addEventListener("click", () => {
-  lightbox.classList.add("hidden");
-});
-
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) {
+if (lightboxClose && lightbox) {
+  lightboxClose.addEventListener("click", () => {
     lightbox.classList.add("hidden");
-  }
-});
+  });
 
-// ===== Trivia Quiz =====
-// Replace these with your own questions / answers if you want
-const quizQuestions = [
-  {
-    question: "Where did we go on our first date?",
-    options: [
-      "Firestone Grill",
-      "Haha Sushi in SLO",
-      "Thai restaurant downtown",
-      "Some random coffee shop"
-    ],
-    correctIndex: 1
-  },
-  {
-    question: "Where did I officially ask you to be my girlfriend?",
-    options: [
-      "In my car",
-      "At the beach",
-      "In my bed at Cooper",
-      "At a restaurant"
-    ],
-    correctIndex: 2
-  },
-  {
-    question: "Where was our first big trip together?",
-    options: [
-      "Barcelona",
-      "Sayulita, Mexico",
-      "Lake Tahoe",
-      "Sea Ranch"
-    ],
-    correctIndex: 1
-  },
-  {
-    question: "Which town did we go to for Christmas lights?",
-    options: [
-      "Cambria",
-      "Paso Robles",
-      "San Diego",
-      "Santa Cruz"
-    ],
-    correctIndex: 0
-  }
-];
-
-const quizContainer = document.getElementById("quizContainer");
-
-function renderQuiz() {
-  quizQuestions.forEach((q, idx) => {
-    const qDiv = document.createElement("div");
-    qDiv.className = "quiz-question";
-
-    const title = document.createElement("h3");
-    title.textContent = `${idx + 1}. ${q.question}`;
-    qDiv.appendChild(title);
-
-    const optionsDiv = document.createElement("div");
-    optionsDiv.className = "quiz-options";
-
-    q.options.forEach((opt, optIdx) => {
-      const label = document.createElement("label");
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = `question-${idx}`;
-      input.value = optIdx;
-
-      label.appendChild(input);
-      label.appendChild(document.createTextNode(" " + opt));
-      optionsDiv.appendChild(label);
-    });
-
-    qDiv.appendChild(optionsDiv);
-    quizContainer.appendChild(qDiv);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add("hidden");
+    }
   });
 }
 
-renderQuiz();
+// ===== 20 Things I Love About You (Flashcards) =====
 
-document.getElementById("submitQuiz").addEventListener("click", () => {
-  let score = 0;
-  quizQuestions.forEach((q, idx) => {
-    const selected = document.querySelector(
-      `input[name="question-${idx}"]:checked`
-    );
-    if (selected && Number(selected.value) === q.correctIndex) {
-      score += 1;
+// First 3 from what you wrote, rest are placeholders for you to fill in.
+const loveCards = [
+  {
+    title: "1. Who you are",
+    text: "I love how funny and outgoing you are, it is the first thing that caught my eye when I met you."
+  },
+  {
+    title: "2. How kind you are",
+    text: "You are the sweetest person I have ever met, more caring than anyone."
+  },
+  {
+    title: "3. How smart you are",
+    text: "You are so smart and ambitious."
+  },
+  {
+    title: "4.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "5.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "6.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "7.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "8.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "9.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "10.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "11.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "12.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "13.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "14.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "15.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "16.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "17.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "18.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "19.",
+    text: "I'll fill this in with another thing I love about you."
+  },
+  {
+    title: "20.",
+    text: "I'll fill this in with another thing I love about you."
+  }
+];
+
+const loveCardTitle = document.getElementById("loveCardTitle");
+const loveCardText = document.getElementById("loveCardText");
+const loveCardCounter = document.getElementById("loveCardCounter");
+const prevLoveCardBtn = document.getElementById("prevLoveCard");
+const nextLoveCardBtn = document.getElementById("nextLoveCard");
+
+let currentLoveIndex = 0;
+
+function renderLoveCard() {
+  if (!loveCardTitle || !loveCardText) return;
+
+  const card = loveCards[currentLoveIndex];
+  loveCardTitle.textContent = card.title;
+  loveCardText.textContent = card.text;
+
+  if (loveCardCounter) {
+    loveCardCounter.textContent = `${currentLoveIndex + 1} / ${loveCards.length}`;
+  }
+
+  if (prevLoveCardBtn) {
+    prevLoveCardBtn.disabled = currentLoveIndex === 0;
+  }
+  if (nextLoveCardBtn) {
+    nextLoveCardBtn.disabled = currentLoveIndex === loveCards.length - 1;
+  }
+}
+
+if (prevLoveCardBtn && nextLoveCardBtn) {
+  prevLoveCardBtn.addEventListener("click", () => {
+    if (currentLoveIndex > 0) {
+      currentLoveIndex--;
+      renderLoveCard();
     }
   });
 
-  const result = document.getElementById("quizResult");
-  if (score === quizQuestions.length) {
-    result.textContent = `You got ${score}/${quizQuestions.length}! Perfect score — you know us so well 🥹❤️`;
-  } else {
-    result.textContent = `You got ${score}/${quizQuestions.length} — still amazing, and now we have an excuse to relive more memories together 💕`;
-  }
-});
-
-// ===== Who's More Likely =====
-const whoCards = document.querySelectorAll(".who-card");
-
-const whoAnswers = {
-  "sleep-in": {
-    me: "I think I win the 'sleeping in the latest' award 😴",
-    you: "Okay, maybe you sleep in more... but you look extra cute doing it."
-  },
-  "steal-fries": {
-    me: "I absolutely steal your fries. No regrets 🍟",
-    you: "You definitely steal mine, and I secretly love it."
-  },
-  "plan-dates": {
-    me: "I like to think I'm behind some of our surprise plans 😉",
-    you: "You! Your date ideas are always my favorite ones."
-  }
-};
-
-whoCards.forEach((card) => {
-  const questionId = card.getAttribute("data-question-id");
-  const buttons = card.querySelectorAll(".who-btn");
-  const resultP = card.querySelector(".who-result");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const answerKey = btn.getAttribute("data-answer");
-      const answerText =
-        whoAnswers[questionId] && whoAnswers[questionId][answerKey]
-          ? whoAnswers[questionId][answerKey]
-          : "";
-      resultP.textContent = answerText;
-    });
+  nextLoveCardBtn.addEventListener("click", () => {
+    if (currentLoveIndex < loveCards.length - 1) {
+      currentLoveIndex++;
+      renderLoveCard();
+    }
   });
-});
+
+  // Initial render
+  renderLoveCard();
+}
+
+// ===== Time-Locked Messages ("Open in the Future") =====
+
+// Edit these dates and messages however you want.
+// Format for unlockDate: "YYYY-MM-DD"
+const timeMessages = [
+  {
+    title: "For us on our 3rd anniversary",
+    unlockDate: "2026-10-07",
+    message: "I'll fill this in with a letter to us on our 3rd anniversary. ❤️"
+  },
+  {
+    title: "For a random rainy day",
+    unlockDate: "2026-02-15",
+    message: "A little note for you to open on some rainy cozy day together."
+  },
+  {
+    title: "For us in 5 years",
+    unlockDate: "2030-01-01",
+    message: "Future us, I hope we’re still being silly, traveling, and choosing each other every day."
+  }
+];
+
+const timeCapsuleContainer = document.getElementById("timeCapsuleContainer");
+
+function renderTimeCapsules() {
+  if (!timeCapsuleContainer) return;
+
+  const now = new Date();
+
+  timeMessages.forEach((msg) => {
+    const unlockDate = new Date(msg.unlockDate);
+    const unlocked = now >= unlockDate;
+
+    const card = document.createElement("div");
+    card.className = "timecapsule-card";
+
+    const titleEl = document.createElement("h3");
+    titleEl.textContent = msg.title;
+    card.appendChild(titleEl);
+
+    const dateEl = document.createElement("p");
+    dateEl.className = "timecapsule-date";
+    dateEl.textContent = `Unlocks on ${unlockDate.toLocaleDateString()}`;
+    card.appendChild(dateEl);
+
+    const bodyEl = document.createElement("p");
+    bodyEl.className = "timecapsule-body";
+
+    if (unlocked) {
+      bodyEl.textContent = msg.message;
+    } else {
+      bodyEl.textContent = "This one is locked for future us. Come back when it's time ✨";
+    }
+    card.appendChild(bodyEl);
+
+    if (!unlocked) {
+      const noteEl = document.createElement("p");
+      noteEl.className = "timecapsule-locked-note";
+      noteEl.textContent =
+        "No peeking early (yes, I know you technically could change the date 😜).";
+      card.appendChild(noteEl);
+    }
+
+    timeCapsuleContainer.appendChild(card);
+  });
+}
+
+renderTimeCapsules();
 
 // ===== Relationship Map (Leaflet) =====
 if (typeof L !== "undefined") {
@@ -258,11 +332,11 @@ if (typeof L !== "undefined") {
         ],
         image: "images/marin_fair.jpeg"
       },
-    {
+      {
         name: "Sea Ranch, CA",
         coords: [38.68093, -123.42967],
         memories: [
-          "Sea Ranch cabin trips & birthdays",
+          "Sea Ranch cabin trips & birthdays"
         ],
         image: "images/sea_ranch.jpeg"
       },
@@ -318,7 +392,7 @@ if (typeof L !== "undefined") {
         name: "Sayulita, Mexico",
         coords: [20.8688, -105.4419],
         memories: [
-          "Our first big trip together",
+          "Our first big trip together"
         ],
         image: "images/mexico_1.jpeg"
       },
