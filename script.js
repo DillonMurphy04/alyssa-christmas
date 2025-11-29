@@ -226,7 +226,7 @@ if (typeof L !== "undefined") {
           "First sleepover – Sept 23, 2023",
           "First Halloween together",
           "Shabang (2024 & 2025)",
-          "Graduation and so many everyday SLO memories"
+          "Many, manny more memories"
         ],
         image: "images/first_shabang.jpeg"
       },
@@ -235,7 +235,7 @@ if (typeof L !== "undefined") {
         coords: [35.311, -120.832],
         memories: [
           "First time meeting your family and carving pumpkins",
-          "Cozy days with your family"
+          "Lots of dinners from your mom and hanging out with Isla"
         ],
         image: "images/first_fam.jpeg"
       },
@@ -284,7 +284,8 @@ if (typeof L !== "undefined") {
         memories: [
           "Moving you into UCSB",
           "Deltopia, date party, St. Fratty's",
-          "Our 2-year anniversary"
+          "Our 2-year anniversary",
+          "Exploring SB together"
         ],
         image: "images/date_party.jpeg"
       },
@@ -293,7 +294,7 @@ if (typeof L !== "undefined") {
         coords: [38.9404, -119.977],
         memories: [
           "Trips with both of our families",
-          "Snow, lake, and family chaos together"
+          "Skiing and jumping in the lake!"
         ],
         image: "images/tahoe_fams.jpeg"
       },
@@ -311,7 +312,6 @@ if (typeof L !== "undefined") {
         coords: [20.8688, -105.4419],
         memories: [
           "Our first big trip together",
-          "Sun, beach, and being fully out of our normal routine"
         ],
         image: "images/mexico_1.jpeg"
       },
@@ -328,9 +328,8 @@ if (typeof L !== "undefined") {
         name: "London & England",
         coords: [51.5074, -0.1278],
         memories: [
-          "London adventures",
-          "Visiting your family across England",
-          "Feeling like a little team in another country"
+          "London bars!",
+          "Visiting your family across England"
         ],
         image: "images/england_1.jpeg"
       },
@@ -349,7 +348,7 @@ if (typeof L !== "undefined") {
         coords: [32.7157, -117.1611],
         memories: [
           "San Diego trip you gifted me",
-          "More sunshine & exploring together"
+          "Reigniting the spark"
         ],
         image: "images/san_diego.jpeg"
       }
