@@ -792,32 +792,25 @@
 
     <!-- 20 Things I Love About You -->
     <section id="love-cards" class="section">
-      <h2>20 Things I Love About You</h2>
-      <p class="section-intro">
-        Just a few of the countless little (and big) things I love about you. Click on the card to flip it. 💘
-      </p>
+    <h2>20 Things I Love About You</h2>
+    <p class="section-intro">
+        Just a few of the countless little (and big) things I love about you. Click on the card to
+        “flip” it. 💘
+    </p>
 
-      <div class="love-cards-wrapper">
-        <!-- Flashcard-style flip card -->
-        <div id="loveCard" class="love-card">
-          <div class="love-card-inner">
-            <div class="love-card-face love-card-front">
-              <h3 id="loveCardTitleFront"></h3>
-              <p class="love-card-hint">Click to flip 💌</p>
-            </div>
-            <div class="love-card-face love-card-back">
-              <h3 id="loveCardTitleBack"></h3>
-              <p id="loveCardText"></p>
-            </div>
-          </div>
+    <div class="love-cards-wrapper">
+        <div id="loveCard" class="love-card-simple">
+        <h3 id="loveCardTitle"></h3>
+        <p id="loveCardHint" class="love-card-hint">Click to flip 💌</p>
+        <p id="loveCardBody" class="love-card-body hidden"></p>
         </div>
 
         <div class="love-card-controls">
-          <button id="prevLoveCard" class="secondary-btn">&larr; Previous</button>
-          <span id="loveCardCounter" class="love-card-counter"></span>
-          <button id="nextLoveCard" class="primary-btn">Next &rarr;</button>
+        <button id="prevLoveCard" class="secondary-btn">&larr; Previous</button>
+        <span id="loveCardCounter" class="love-card-counter"></span>
+        <button id="nextLoveCard" class="primary-btn">Next &rarr;</button>
         </div>
-      </div>
+    </div>
     </section>
 
     <!-- Time-Locked Messages Section -->

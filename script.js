@@ -81,156 +81,163 @@ if (lightboxClose && lightbox) {
   });
 }
 
-// ===== 20 Things I Love About You (Flip Card) =====
+    // ===== 20 Things I Love About You (Simple Flip Card) =====
 
-// First 3 from what you wrote, rest are placeholders for you to fill in.
-const loveCards = [
-  {
-    title: "1. Who you are",
-    text: "I love how funny and outgoing you are, it is the first thing that caught my eye when I met you."
-  },
-  {
-    title: "2. How kind you are",
-    text: "You are the sweetest person I have ever met, more caring than anyone."
-  },
-  {
-    title: "3. How smart you are",
-    text: "You are so smart and ambitious."
-  },
-  {
-    title: "4.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "5.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "6.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "7.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "8.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "9.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "10.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "11.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "12.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "13.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "14.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "15.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "16.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "17.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "18.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "19.",
-    text: "I'll fill this in with another thing I love about you."
-  },
-  {
-    title: "20.",
-    text: "I'll fill this in with another thing I love about you."
-  }
-];
-
-const loveCard = document.getElementById("loveCard");
-const loveCardInner = loveCard ? loveCard.querySelector(".love-card-inner") : null;
-const loveCardTitleFront = document.getElementById("loveCardTitleFront");
-const loveCardTitleBack = document.getElementById("loveCardTitleBack");
-const loveCardText = document.getElementById("loveCardText");
-const loveCardCounter = document.getElementById("loveCardCounter");
-const prevLoveCardBtn = document.getElementById("prevLoveCard");
-const nextLoveCardBtn = document.getElementById("nextLoveCard");
-
-let currentLoveIndex = 0;
-
-function renderLoveCard() {
-  if (!loveCardTitleFront || !loveCardTitleBack || !loveCardText) return;
-
-  const card = loveCards[currentLoveIndex];
-  loveCardTitleFront.textContent = card.title;
-  loveCardTitleBack.textContent = card.title;
-  loveCardText.textContent = card.text;
-
-  if (loveCardCounter) {
-    loveCardCounter.textContent = `${currentLoveIndex + 1} / ${loveCards.length}`;
-  }
-
-  // Reset flip state whenever we change cards
-  if (loveCard) {
-    loveCard.classList.remove("is-flipped");
-  }
-
-  if (prevLoveCardBtn) {
-    prevLoveCardBtn.disabled = currentLoveIndex === 0;
-  }
-  if (nextLoveCardBtn) {
-    nextLoveCardBtn.disabled = currentLoveIndex === loveCards.length - 1;
-  }
-}
-
-// Flip on click (front/back)
-if (loveCard && loveCardInner) {
-  loveCard.addEventListener("click", () => {
-    loveCard.classList.toggle("is-flipped");
-  });
-}
-
-// Prev / Next controls
-if (prevLoveCardBtn && nextLoveCardBtn) {
-  prevLoveCardBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // don't flip the card on button click
-    if (currentLoveIndex > 0) {
-      currentLoveIndex--;
-      renderLoveCard();
+    const loveCards = [
+    {
+        title: "1. Who you are",
+        text: "I love how funny and outgoing you are, it is the first thing that caught my eye when I met you."
+    },
+    {
+        title: "2. How kind you are",
+        text: "You are the sweetest person I have ever met, more caring than anyone."
+    },
+    {
+        title: "3. How smart you are",
+        text: "You are so smart and ambitious."
+    },
+    {
+        title: "4.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "5.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "6.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "7.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "8.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "9.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "10.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "11.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "12.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "13.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "14.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "15.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "16.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "17.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "18.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "19.",
+        text: "I'll fill this in with another thing I love about you."
+    },
+    {
+        title: "20.",
+        text: "I'll fill this in with another thing I love about you."
     }
-  });
+    ];
 
-  nextLoveCardBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // don't flip the card on button click
-    if (currentLoveIndex < loveCards.length - 1) {
-      currentLoveIndex++;
-      renderLoveCard();
+    const loveCardEl = document.getElementById("loveCard");
+    const loveCardTitleEl = document.getElementById("loveCardTitle");
+    const loveCardHintEl = document.getElementById("loveCardHint");
+    const loveCardBodyEl = document.getElementById("loveCardBody");
+    const loveCardCounterEl = document.getElementById("loveCardCounter");
+    const prevLoveCardBtn = document.getElementById("prevLoveCard");
+    const nextLoveCardBtn = document.getElementById("nextLoveCard");
+
+    let currentLoveIndex = 0;
+    let showingBack = false;
+
+    function renderLoveCard() {
+    if (!loveCardTitleEl || !loveCardHintEl || !loveCardBodyEl) return;
+
+    const item = loveCards[currentLoveIndex];
+    loveCardTitleEl.textContent = item.title;
+    loveCardHintEl.textContent = "Click to flip 💌";
+    loveCardBodyEl.textContent = item.text;
+
+    // start each card on the front
+    showingBack = false;
+    loveCardHintEl.classList.remove("hidden");
+    loveCardBodyEl.classList.add("hidden");
+    loveCardEl.classList.remove("is-flipped");
+
+    if (loveCardCounterEl) {
+        loveCardCounterEl.textContent = `${currentLoveIndex + 1} / ${loveCards.length}`;
     }
-  });
 
-  // Initial render
-  renderLoveCard();
-}
+    if (prevLoveCardBtn) prevLoveCardBtn.disabled = currentLoveIndex === 0;
+    if (nextLoveCardBtn) nextLoveCardBtn.disabled = currentLoveIndex === loveCards.length - 1;
+    }
+
+    // click card to flip front/back
+    if (loveCardEl) {
+    loveCardEl.addEventListener("click", () => {
+        showingBack = !showingBack;
+        if (showingBack) {
+        loveCardHintEl.classList.add("hidden");
+        loveCardBodyEl.classList.remove("hidden");
+        loveCardEl.classList.add("is-flipped");
+        } else {
+        loveCardHintEl.classList.remove("hidden");
+        loveCardBodyEl.classList.add("hidden");
+        loveCardEl.classList.remove("is-flipped");
+        }
+    });
+    }
+
+    // prev/next buttons
+    if (prevLoveCardBtn) {
+    prevLoveCardBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // don't trigger flip
+        if (currentLoveIndex > 0) {
+        currentLoveIndex--;
+        renderLoveCard();
+        }
+    });
+    }
+
+    if (nextLoveCardBtn) {
+    nextLoveCardBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // don't trigger flip
+        if (currentLoveIndex < loveCards.length - 1) {
+        currentLoveIndex++;
+        renderLoveCard();
+        }
+    });
+    }
+
+    // initial render
+    renderLoveCard();
 
 // ===== Time-Locked Messages ("Open in the Future") =====
 
