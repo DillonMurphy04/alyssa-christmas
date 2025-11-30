@@ -341,7 +341,7 @@ if (typeof L !== "undefined") {
           "Shabang (2024 & 2025)",
           "Many, many more memories"
         ],
-        image: "images/first_shabang.jpeg"
+        image: "images/first_shabang.JPEG"
       },
       {
         name: "Los Osos, CA",
@@ -350,7 +350,7 @@ if (typeof L !== "undefined") {
           "First time meeting your family and carving pumpkins",
           "Lots of dinners from your mom and hanging out with Isla"
         ],
-        image: "images/first_fam.jpeg"
+        image: "images/first_fam.JPEG"
       },
       {
         name: "Cambria, CA",
@@ -359,7 +359,7 @@ if (typeof L !== "undefined") {
           "Cambria Christmas lights date",
           "Valentine's dinner at Robin's"
         ],
-        image: "images/lights.jpeg"
+        image: "images/lights.JPEG"
       },
       {
         name: "Marin, CA",
@@ -369,7 +369,7 @@ if (typeof L !== "undefined") {
           "Marin County Fair & July 4th",
           "New Year's with my hometown friends"
         ],
-        image: "images/marin_fair.jpeg"
+        image: "images/marin_fair.JPEG"
       },
       {
         name: "Sea Ranch, CA",
@@ -377,7 +377,7 @@ if (typeof L !== "undefined") {
         memories: [
           "Sea Ranch cabin trips & birthdays"
         ],
-        image: "images/sea_ranch.jpeg"
+        image: "images/sea_ranch.JPEG"
       },
       {
         name: "San Francisco, CA",
@@ -387,7 +387,7 @@ if (typeof L !== "undefined") {
           "Crawloween for your 21st",
           "Just walking the city together"
         ],
-        image: "images/sf_1.jpeg"
+        image: "images/sf_1.JPEG"
       },
       {
         name: "Paso Robles, CA",
@@ -396,7 +396,7 @@ if (typeof L !== "undefined") {
           "First big goodbye before summer",
           "Paso fair & seeing you at your fair"
         ],
-        image: "images/paso_fair.jpeg"
+        image: "images/paso_fair.JPEG"
       },
       {
         name: "Santa Barbara / Isla Vista, CA",
@@ -407,7 +407,7 @@ if (typeof L !== "undefined") {
           "Our 2-year anniversary",
           "Exploring SB together"
         ],
-        image: "images/date_party.jpeg"
+        image: "images/date_party.JPEG"
       },
       {
         name: "Lake Tahoe, CA",
@@ -416,7 +416,7 @@ if (typeof L !== "undefined") {
           "Trips with both of our families",
           "Skiing and jumping in the lake!"
         ],
-        image: "images/tahoe_fams.jpeg"
+        image: "images/tahoe_fams.JPEG"
       },
       {
         name: "Monterey & Santa Cruz, CA",
@@ -425,7 +425,7 @@ if (typeof L !== "undefined") {
           "Our Monterey & Santa Cruz trip",
           "First Taco Bell Cantina on the beach"
         ],
-        image: "images/monterey.jpeg"
+        image: "images/monterey.JPEG"
       },
       {
         name: "Sayulita, Mexico",
@@ -433,7 +433,7 @@ if (typeof L !== "undefined") {
         memories: [
           "Our first big trip together"
         ],
-        image: "images/mexico_1.jpeg"
+        image: "images/mexico_1.JPEG"
       },
       {
         name: "Barcelona, Spain",
@@ -442,7 +442,7 @@ if (typeof L !== "undefined") {
           "Exploring Barcelona together",
           "Part of our big Europe trip"
         ],
-        image: "images/spain_1.jpeg"
+        image: "images/spain_1.JPEG"
       },
       {
         name: "London & England",
@@ -451,7 +451,7 @@ if (typeof L !== "undefined") {
           "London bars!",
           "Visiting your family across England"
         ],
-        image: "images/england_1.jpeg"
+        image: "images/england_1.JPEG"
       },
       {
         name: "Los Angeles, CA",
@@ -461,7 +461,7 @@ if (typeof L !== "undefined") {
           "Kaytranada concert",
           "Tame Impala show"
         ],
-        image: "images/LA.jpeg"
+        image: "images/LA.JPEG"
       },
       {
         name: "San Diego, CA",
@@ -470,7 +470,7 @@ if (typeof L !== "undefined") {
           "San Diego trip you gifted me",
           "Reigniting the spark"
         ],
-        image: "images/san_diego.jpeg"
+        image: "images/san_diego.JPEG"
       }
     ];
 
