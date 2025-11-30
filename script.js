@@ -90,79 +90,79 @@ if (lightboxClose && lightbox) {
     },
     {
         title: "2. How kind you are",
-        text: "You are the sweetest person I have ever met, more caring than anyone."
+        text: "You are the sweetest person I have ever met, more caring than anyone. I love how you always think of others."
     },
     {
         title: "3. How smart you are",
-        text: "You are so smart and ambitious."
+        text: "You are so smart and ambitious. I have no doubts you are going to do amazing things"
     },
     {
-        title: "4.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "4. How you show up for me",
+        text: "I love how you always support me, through school, work, and stress. You always make me feel that I am not alone."
     },
     {
-        title: "5.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "5. How you love your family",
+        text: "I love the way you care for your family and how they love you back. I cannot wait to start a family with you."
     },
     {
-        title: "6.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "6. How safe you make me feel",
+        text: "I love how comfortable I am with you. You make me feel safe to tell you anything and I feel you truly understand me."
     },
     {
-        title: "7.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "7. Little everyday things",
+        text: "I love doing the little things with you. Like lying in bed together cuddligns or going to get groceries together. I can't wait to live together!"
     },
     {
-        title: "8.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "8. How excited you get",
+        text: "I love how excited you get for surprise and little things. Always makes me so excited."
     },
     {
-        title: "9.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "9. How you love me",
+        text: "I love how you make me feel loved and chosen every day. You make me feel so special."
     },
     {
-        title: "10.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "10. Our future",
+        text: "I love that when I think of my future, it includes you in it."
     },
     {
-        title: "11.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "11. You push me to be better",
+        text: "I love how you push me to be more outgoing and social and just be the best version of myself."
     },
     {
-        title: "12.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "12. How cute you are",
+        text: "You are the cutest little girl in the world and I love taking care of you."
     },
     {
-        title: "13.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "13. The way you look at me",
+        text: "I love the way you look at me no matter where we are."
     },
     {
-        title: "14.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "14. The things that annoy me",
+        text: "I love everything about you, even when I yell at you for picking, because all of it makes you who you are."
     },
     {
-        title: "15.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "15. Your honesty",
+        text: "I love that you tell me everything, and that I always know I can trust you."
     },
     {
-        title: "16.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "16. How thoughtful you are",
+        text: "I love that you notice all the little things."
     },
     {
-        title: "17.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "17. How beautiful you are",
+        text: "You are the most gorgeous girl in the world, inside and out."
     },
     {
-        title: "18.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "18. How easy you are to talk to",
+        text: "I love nothing more than our late night talks together."
     },
     {
-        title: "19.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "19. Your cuddles",
+        text: "I love how safe I feel in your arms"
     },
     {
-        title: "20.",
-        text: "I'll fill this in with another thing I love about you."
+        title: "20. Your kisses",
+        text: "I love nothing more in life than kissing you Alyssa."
     }
     ];
 
@@ -247,17 +247,26 @@ const timeMessages = [
   {
     title: "For us on our 3rd anniversary",
     unlockDate: "2026-10-07",
-    message: "I'll fill this in with a letter to us on our 3rd anniversary. ❤️"
+    message: "Happy 3 years my love ❤️. If you're reading this we have officially made it to 3 years! I hope we better be living together. \
+    No matter where it is we are living I am sure I am the happiest person alive to be with you. I'm so proud of you and how much you have grown. \
+    Thank you for being my person and my best friend. I love you so much Alyssa. No matter what happens in life I will always choose you."
   },
   {
     title: "For a random rainy day",
     unlockDate: "2026-02-15",
-    message: "A little note for you to open on some rainy cozy day together."
+    message: "Hi baby, I just wanted to write you a little note for a rainy day. \
+    I hope you are having a cozy day inside with me with lots of cuddles (hopefully we aren't too busy). \
+    Text me a little note when you've read this, I love you so much ❤️. I hope you know you will always be my sunshine. \
+    I'm glad we can still find happiness in rainy days together. \
+    I LOVE YOUUUUUU!!!!"
   },
   {
     title: "For us in 5 years",
     unlockDate: "2030-01-01",
-    message: "Future us, I hope we’re still being silly, traveling, and choosing each other every day."
+    message: "I hope you remembered to open this letter! If you did, that means we have made it to 7 years together! \
+    I hope we are living our best lives together, wherever that may be. I hope we have made many memories since I wrote this letter. \
+    I hope that we have continued to grow together and love each other more every day. \
+    No matter what happens in life I will always choose you. I love you so much Alyssa. I have no clue where we will be in 5 years. Maybe we've moved cities, maybe we have new friends, maybe new jobs. I know you will make me the proudest husband in the world (and soon to be father??). Forever and always, Dillon"
   }
 ];
 
@@ -298,7 +307,7 @@ function renderTimeCapsules() {
       const noteEl = document.createElement("p");
       noteEl.className = "timecapsule-locked-note";
       noteEl.textContent =
-        "No peeking early (yes, I know you technically could change the date 😜).";
+        "No peeking early.";
       card.appendChild(noteEl);
     }
 
