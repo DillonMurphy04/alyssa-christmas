@@ -448,3 +448,137 @@ body.no-scroll {
     padding-top: 1.5rem;
   }
 }
+
+/* Connections Game */
+
+.connections-status {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+#connectionsLives {
+  font-weight: 600;
+  color: #7b1f46;
+}
+
+#connectionsMessage {
+  color: #555;
+}
+
+.connections-grid {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(70px, 1fr));
+  gap: 0.75rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.connections-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 0.6rem 0.4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border 0.12s ease,
+    background 0.12s ease;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.connections-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+}
+
+.connections-card.selected {
+  border-color: #c2185b;
+  background: #ffe4f2;
+  transform: translateY(-2px);
+}
+
+.connections-card.disabled {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
+
+.connections-controls {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Solved groups bar */
+
+.connections-solved {
+  max-width: 520px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.connections-solved-row {
+  border-radius: 14px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: #2b2b2b;
+}
+
+.connections-solved-row-title {
+  font-weight: 700;
+}
+
+.connections-solved-row-words {
+  font-weight: 500;
+}
+
+/* Color themes similar to NYT-style */
+
+.conn-yellow {
+  background: #fff8d1;
+  border: 1px solid #f0d45c;
+}
+
+.conn-green {
+  background: #dff8dd;
+  border: 1px solid #69b772;
+}
+
+.conn-blue {
+  background: #e0f1ff;
+  border: 1px solid #5a90d9;
+}
+
+.conn-purple {
+  background: #efe0ff;
+  border: 1px solid #a46adf;
+}
+
+/* Little shake animation for wrong guess (optional) */
+
+.connections-grid.shake {
+  animation: conn-shake 0.25s;
+}
+
+@keyframes conn-shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}

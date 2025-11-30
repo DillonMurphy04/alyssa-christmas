@@ -487,3 +487,251 @@ if (typeof L !== "undefined") {
     });
   }
 }
+
+// ===== Connections Game (NYT-style mini game) =====
+
+const connectionsData = [
+  // Yellow (easiest): places we want to move to
+  { word: "Boston", group: "places", color: "yellow" },
+  { word: "San Francisco", group: "places", color: "yellow" },
+  { word: "San Diego", group: "places", color: "yellow" },
+  { word: "New York", group: "places", color: "yellow" },
+
+  // Green: dates we've been on
+  { word: "Robin's", group: "dates", color: "green" },
+  { word: "Fish Gaucho", group: "dates", color: "green" },
+  { word: "Little Sakana", group: "dates", color: "green" },
+  { word: "Toma", group: "dates", color: "green" },
+
+  // Blue: foods we've put each other on
+  { word: "indian", group: "foods", color: "blue" },
+  { word: "mexican", group: "foods", color: "blue" },
+  { word: "sauce", group: "foods", color: "blue" },
+  { word: "medicine", group: "foods", color: "blue" },
+
+  // Purple: things related to bed
+  { word: "chacha", group: "bed", color: "purple" },
+  { word: "popcorn", group: "bed", color: "purple" },
+  { word: "doggy", group: "bed", color: "purple" },
+  { word: "uti", group: "bed", color: "purple" }
+];
+
+// Group meta info for solved display
+const connectionsGroupsMeta = {
+  places: {
+    title: "Places we want to move to",
+    colorClass: "conn-yellow"
+  },
+  dates: {
+    title: "Dates we have been on",
+    colorClass: "conn-green"
+  },
+  foods: {
+    title: "Foods we've put each other on",
+    colorClass: "conn-blue"
+  },
+  bed: {
+    title: "Things related to bed",
+    colorClass: "conn-purple"
+  }
+};
+
+const connectionsGridEl = document.getElementById("connectionsGrid");
+const connectionsSolvedEl = document.getElementById("connectionsSolved");
+const connectionsLivesEl = document.getElementById("connectionsLives");
+const connectionsMessageEl = document.getElementById("connectionsMessage");
+const connectionsSubmitBtn = document.getElementById("connectionsSubmit");
+const connectionsDeselectBtn = document.getElementById("connectionsDeselect");
+
+let connectionsLives = 3;
+let connectionsSelected = new Set();
+let connectionsSolvedGroups = new Set();
+let connectionsShuffled = [];
+
+// Fisher–Yates shuffle
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function renderConnectionsGrid() {
+  if (!connectionsGridEl) return;
+
+  connectionsShuffled = shuffleArray(connectionsData);
+  connectionsGridEl.innerHTML = "";
+  connectionsSelected.clear();
+
+  connectionsShuffled.forEach((item, index) => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "connections-card";
+    card.textContent = item.word;
+    card.dataset.index = index;
+
+    card.addEventListener("click", () => {
+      if (connectionsLives <= 0) return;
+      if (card.classList.contains("disabled")) return;
+
+      const idx = Number(card.dataset.index);
+
+      if (connectionsSelected.has(idx)) {
+        // deselect
+        connectionsSelected.delete(idx);
+        card.classList.remove("selected");
+      } else {
+        // max of 4 selections
+        if (connectionsSelected.size >= 4) {
+          showConnectionsMessage("You can only pick 4 at a time.", "soft");
+          return;
+        }
+        connectionsSelected.add(idx);
+        card.classList.add("selected");
+      }
+    });
+
+    connectionsGridEl.appendChild(card);
+  });
+
+  updateConnectionsLives();
+  showConnectionsMessage("Pick 4 words that belong together.");
+}
+
+function updateConnectionsLives() {
+  if (!connectionsLivesEl) return;
+  connectionsLivesEl.textContent = `Lives: ${connectionsLives}`;
+}
+
+function showConnectionsMessage(msg, tone = "normal") {
+  if (!connectionsMessageEl) return;
+  connectionsMessageEl.textContent = msg;
+  connectionsMessageEl.style.color =
+    tone === "error" ? "#b00020" : tone === "success" ? "#2e7d32" : "#555";
+}
+
+// Move a solved group to the solved bar
+function addSolvedGroup(groupKey) {
+  if (!connectionsSolvedEl) return;
+  const meta = connectionsGroupsMeta[groupKey];
+  const row = document.createElement("div");
+  row.className = `connections-solved-row ${meta ? meta.colorClass : ""}`;
+
+  const title = document.createElement("div");
+  title.className = "connections-solved-row-title";
+  title.textContent = meta ? meta.title : groupKey;
+
+  const words = connectionsData
+    .filter((it) => it.group === groupKey)
+    .map((it) => it.word)
+    .join(" · ");
+
+  const wordsDiv = document.createElement("div");
+  wordsDiv.className = "connections-solved-row-words";
+  wordsDiv.textContent = words;
+
+  row.appendChild(title);
+  row.appendChild(wordsDiv);
+  connectionsSolvedEl.appendChild(row);
+}
+
+// Check guess when "Submit" is clicked
+function handleConnectionsSubmit() {
+  if (!connectionsGridEl) return;
+  if (connectionsSelected.size !== 4) {
+    showConnectionsMessage("Pick exactly 4 words before submitting.", "soft");
+    return;
+  }
+
+  // Map selected indices to items
+  const selectedIndices = Array.from(connectionsSelected);
+  const selectedItems = selectedIndices.map((idx) => connectionsShuffled[idx]);
+
+  const uniqueGroups = new Set(selectedItems.map((item) => item.group));
+
+  // Must be same group & not already solved
+  if (uniqueGroups.size === 1) {
+    const groupKey = selectedItems[0].group;
+
+    if (connectionsSolvedGroups.has(groupKey)) {
+      showConnectionsMessage(
+        "You already solved that group. Try a different combo!",
+        "soft"
+      );
+      return;
+    }
+
+    // Success!
+    connectionsSolvedGroups.add(groupKey);
+    addSolvedGroup(groupKey);
+    showConnectionsMessage("Nice! You solved a group 🎉", "success");
+
+    // Disable those cards
+    const cardEls = connectionsGridEl.querySelectorAll(".connections-card");
+    selectedIndices.forEach((idx) => {
+      const card = Array.from(cardEls).find(
+        (el) => Number(el.dataset.index) === idx
+      );
+      if (card) {
+        card.classList.remove("selected");
+        card.classList.add("disabled");
+      }
+    });
+
+    connectionsSelected.clear();
+
+    // Check if all 4 groups solved
+    if (connectionsSolvedGroups.size === 4) {
+      showConnectionsMessage(
+        "You solved all of them! I love youuuu💕",
+        "success"
+      );
+    }
+  } else {
+    // Wrong guess
+    connectionsLives -= 1;
+    updateConnectionsLives();
+    showConnectionsMessage("Not quite… try again 🧠", "error");
+
+    connectionsGridEl.classList.add("shake");
+    setTimeout(() => connectionsGridEl.classList.remove("shake"), 250);
+
+    if (connectionsLives <= 0) {
+      showConnectionsMessage(
+        "Out of lives… but I still love you! ❤️",
+        "error"
+      );
+      // Disable remaining cards
+      const cardEls = connectionsGridEl.querySelectorAll(".connections-card");
+      cardEls.forEach((card) => {
+        card.classList.add("disabled");
+        card.classList.remove("selected");
+      });
+      connectionsSelected.clear();
+    }
+  }
+}
+
+// Deselect all
+function handleConnectionsDeselect() {
+  if (!connectionsGridEl) return;
+  connectionsSelected.clear();
+  const cardEls = connectionsGridEl.querySelectorAll(".connections-card");
+  cardEls.forEach((card) => card.classList.remove("selected"));
+  showConnectionsMessage("Selection cleared. Try a new combo!");
+}
+
+// Wire up buttons & render on load
+if (connectionsGridEl) {
+  renderConnectionsGrid();
+}
+
+if (connectionsSubmitBtn) {
+  connectionsSubmitBtn.addEventListener("click", handleConnectionsSubmit);
+}
+
+if (connectionsDeselectBtn) {
+  connectionsDeselectBtn.addEventListener("click", handleConnectionsDeselect);
+}

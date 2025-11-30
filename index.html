@@ -35,9 +35,10 @@
 
   <nav class="navbar">
     <a href="#timeline">Our Timeline</a>
-    <a href="#love-cards">20 Things I Love About You</a>
-    <a href="#time-capsule">Open in the Future</a>
+    <a href="#love-cards">20 Things</a>
+    <a href="#open-when">Open in the Future</a>
     <a href="#map-section">Our Places</a>
+    <a href="#connections">Connections</a>
     <a href="#playlist">Playlist</a>
   </nav>
 
@@ -834,6 +835,31 @@
       </p>
       <div id="map"></div>
     </section>
+
+    <!-- Connections Game Section -->
+    <section id="connections" class="section">
+      <h2>Our Little Connections Game</h2>
+      <p class="section-intro">
+        Like the NYT game, but made for us!
+      </p>
+
+      <div class="connections-status">
+        <span id="connectionsLives">Lives: 3</span>
+        <span id="connectionsMessage"></span>
+      </div>
+
+      <!-- Solved groups show up here -->
+      <div id="connectionsSolved" class="connections-solved"></div>
+
+      <!-- The 16-word grid -->
+      <div id="connectionsGrid" class="connections-grid"></div>
+
+      <div class="connections-controls">
+        <button id="connectionsSubmit" class="primary-btn">Submit</button>
+        <button id="connectionsDeselect" class="secondary-btn">Deselect</button>
+      </div>
+    </section>
+
 
     <!-- Playlist Section -->
     <section id="playlist" class="section">
