@@ -527,7 +527,7 @@ const connectionsGroupsMeta = {
     colorClass: "conn-green"
   },
   foods: {
-    title: "Foods we've put each other on",
+    title: "Things we've put each other on",
     colorClass: "conn-blue"
   },
   bed: {
